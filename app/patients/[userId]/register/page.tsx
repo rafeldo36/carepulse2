@@ -1,11 +1,14 @@
+import RegisterForm from '@/components/forms/RegisterForm'
+import { getUser } from '@/lib/actions/patient.action'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const Register = () => {
+const Register = async ({ params: { userId } }: SearchParamProps) => {
+
+    const user = await getUser(userId)
     return (
         <div className="flex h-screen max-h-screen">
-            {/* TODO: Otp verification | Passkey Modal  */}
             <section className="remove-scrollbar container my-auto">
                 <div className="sub-container max-w-[496px]">
                     <Image
@@ -15,7 +18,7 @@ const Register = () => {
                         alt="patient"
                         className="mb-12 h-10 w-fit"
                     />
-                    {/* <PatientForm /> */}
+                    <RegisterForm user={user} />
                     <div className="text-14-regular mt-20 flex justify-between">
                         <p className="justify-items-end text-dark-600 xl:text-left">
                             © 2024 CarePulse
